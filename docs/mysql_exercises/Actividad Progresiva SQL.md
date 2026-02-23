@@ -1,4 +1,5 @@
-## Actividad Progresiva SQL — Subiendo de Nivel
+# Actividad Progresiva SQL
+## Subiendo de Nivel
 
 - Base de datos: `users`
 - Regla clave: cada consulta debe construir sobre la anterior.

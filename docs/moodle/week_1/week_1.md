@@ -85,7 +85,10 @@ descripcion
 fecha_diagnostico
 id_cita (FK)
 ```
-<img src="../../../static/img/EDR-draw.png" alt="D-ER"/>
+
+![D-ER-draw.io](../../../static/img/EDR-draw.png)
+
+<!-- <img src="../../../static/img/EDR-draw.png" alt="D-ER"/> -->
 
 #### Relaciones (cardinalidades)
 
@@ -135,7 +138,9 @@ descripcion	VARCHAR(255)
 fecha_diagnostico	DATE
 id_cita (FK)	INT
 ```
-<img src="../../../static/img/EDR.png" alt="D-ER-MYSQL"/>
+
+![D-ER-MYSQL](../../../static/img/EDR.png)
+<!-- <img src="../../../static/img/EDR.png" alt="D-ER-MYSQL"/> -->
 
 #### TASK 4 – Revisión de integridad y normalización
 **Verificación de 3FN**
