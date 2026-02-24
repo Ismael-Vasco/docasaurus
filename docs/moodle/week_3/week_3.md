@@ -10,7 +10,7 @@
 **Estructura de documentos**
 
 **usuarios**
-```mongodb
+```js
 {
   _id: ObjectId(),
   nombre: String,
@@ -29,7 +29,7 @@
 }
 ```
 **contenidos**
-```mongodb
+```js
 {
   _id: ObjectId(),
   titulo: String,
@@ -43,7 +43,7 @@
 }
 ```
 **valoraciones**
-```mongodb
+```js
 {
   _id: ObjectId(),
   usuarioId: ObjectId,
@@ -55,7 +55,7 @@
 ```
 
 **listas**
-```mongodb
+```js
 {
   _id: ObjectId(),
   usuarioId: ObjectId,
@@ -68,13 +68,13 @@
 ### TASK 2 – Inserción de datos
 
 **Create collection and DB**
-```mongodb
+```js
 use streamhub
 ```
 
 
 **INSERTAR CONTENIDOS**
-```mongodb
+```js
 db.contenidos.insertMany([
 {
   titulo: "Inception",
@@ -116,7 +116,7 @@ db.contenidos.insertMany([
 ```
 
 **INSERTAR USUARIOS**
-```mongodb
+```js
 db.usuarios.insertMany([
 {
   nombre: "Carlos Perez",
@@ -140,7 +140,7 @@ db.usuarios.insertMany([
 ```
 
 **INSERTAR VALORACIONES**
-```mongodb
+```js
 db.valoraciones.insertMany([
 {
   usuarioId: db.usuarios.findOne({nombre:"Carlos Perez"})._id,
@@ -163,37 +163,37 @@ db.valoraciones.insertMany([
 ### TASK 3 – Consultas con operadores
 
 **Películas con duración > 120 minutos**
-```mongodb
+```js
 db.contenidos.find(
   { duracion: { $gt: 120 } }
 )
 ```
 **Usuarios mayores de 25 años**
-```mongodb
+```js
 db.usuarios.find(
   { edad: { $gt: 25 } }
 )
 ```
 **Contenidos entre 1995 y 2015**
-```mongodb
+```js
 db.contenidos.find(
   { anio: { $gt: 1995, $lt: 2015 } }
 )
 ```
 **Contenidos de género Ciencia Ficcion o Comedia**
-```mongodb
+```js
 db.contenidos.find(
   { genero: { $in: ["Ciencia Ficcion", "Comedia"] } }
 )
 ```
 **Búsqueda por título usando regex**
-```mongodb
+```js
 db.contenidos.find(
   { titulo: { $regex: "The", $options: "i" } }
 )
 ```
 **Uso combinado de $and y $or**
-```mongodb
+```js
 db.contenidos.find({
   $and: [
     { tipo: "pelicula" },
@@ -209,14 +209,14 @@ db.contenidos.find({
 ### TASK 4 – Updates y Deletes
 
 **Actualizar rating de una película**
-```mongodb
+```js
 db.contenidos.updateOne(
   { titulo: "Inception" },
   { $set: { ratingPromedio: 4.9 } }
 )
 ```
 **Actualizar plan de varios usuarios**
-```mongodb
+```js
 db.usuarios.updateMany(
   { plan: "basico" },
   { $set: { plan: "premium" } }
@@ -224,13 +224,13 @@ db.usuarios.updateMany(
 ```
 
 **Eliminar una valoración**
-```mongodb
+```js
 db.valoraciones.deleteOne(
   { comentario: "Muy buena" }
 )
 ```
 **Eliminar contenidos inactivos**
-```mongodb
+```js
 db.contenidos.deleteMany(
   { activo: false }
 )
@@ -240,7 +240,7 @@ db.contenidos.deleteMany(
 ### TASK 5 – Índices
 
 **Crear índices**
-```mongodb
+```js
 db.contenidos.createIndex({ titulo: 1 })
 db.contenidos.createIndex({ genero: 1 })
 db.usuarios.createIndex({ email: 1 }, { unique: true })
@@ -248,7 +248,7 @@ db.valoraciones.createIndex({ contenidoId: 1 })
 ```
 
 **Ver índices creados**
-```mongodb
+```js
 db.contenidos.getIndexes()
 db.usuarios.getIndexes()
 ```
@@ -266,7 +266,7 @@ db.usuarios.getIndexes()
 *AGREGACIÓN 1*
 
 **Promedio de puntuación por contenido**
-```mongodb
+```js
 db.valoraciones.aggregate([
   {
     $group: {
@@ -284,7 +284,7 @@ db.valoraciones.aggregate([
 *AGREGACIÓN 2*
 
 **Cantidad de contenidos por género**
-```mongodb
+```js
 db.contenidos.aggregate([
   { $unwind: "$genero" },
   {
@@ -307,7 +307,7 @@ db.contenidos.aggregate([
 *AGREGACIÓN 3*
 
 **Usuarios y cantidad de valoraciones realizadas**
-```mongodb
+```js
 db.valoraciones.aggregate([
   {
     $group: {
